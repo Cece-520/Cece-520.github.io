@@ -1,0 +1,278 @@
+/* styles.css */
+:root {
+  --pink-main: #f9c5c7;
+  --pink-soft: #ffddd8;
+  --pink-accent: #ffb0b5;
+  --pink-deep: #f49aa3;
+  --text-main: #333;
+  --white: #ffffff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Quicksand", sans-serif;
+  color: var(--text-main);
+  line-height: 1.6;
+
+  /* dotted “paper” background */
+  background-color: var(--pink-soft);
+  background-image: radial-gradient(rgba(0,0,0,0.12) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+a {
+  color: #c8557a;
+  text-decoration: none;
+  font-weight: 700;
+}
+a:hover { text-decoration: underline; }
+
+.site-header {
+  background: var(--pink-main);
+  padding: 3rem 1.5rem 2rem;
+  text-align: center;
+  border-bottom-left-radius: 42px;
+  border-bottom-right-radius: 42px;
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: 2.6rem;
+}
+
+.site-header p {
+  max-width: 680px;
+  margin: 1rem auto 0;
+  font-size: 1.1rem;
+}
+
+.links {
+  margin-top: 1.25rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.links a {
+  background: rgba(255,255,255,0.65);
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+}
+.links a:hover { background: rgba(255,255,255,0.9); }
+
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.card {
+  background: rgba(255,255,255,0.88);
+  border-radius: 18px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(2px);
+}
+
+.card h2 {
+  margin-top: 0;
+  color: #c8557a;
+  font-size: 1.8rem;
+}
+
+.timeline {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Projects container */
+.projects {
+  position: relative;
+  padding-left: 4.2rem;   /* space for yarn + stems */
+  padding-bottom: 160px;  /* space for cat + yarn ball */
+}
+
+/* Single vertical yarn string */
+.yarn-line {
+  position: absolute;
+  left: 26px;
+  top: 0;
+  bottom: 120px;          /* stop above cat zone */
+  width: 7px;
+  border-radius: 999px;
+  background: repeating-linear-gradient(
+    180deg,
+    var(--pink-accent),
+    var(--pink-accent) 14px,
+    var(--pink-deep) 20px,
+    var(--pink-accent) 28px
+  );
+  transition: transform 420ms ease;
+  filter: drop-shadow(0 2px 0 rgba(0,0,0,0.03));
+}
+
+/* Project cards */
+.project {
+  position: relative;
+  background: var(--white);
+  border-radius: 16px;
+  padding: 1.2rem 1.3rem;
+  margin: 1.2rem 0;
+  box-shadow: 0 8px 14px rgba(0,0,0,0.05);
+}
+
+.project h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.25rem;
+}
+
+.project-links {
+  display: flex;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  margin-top: 0.6rem;
+}
+
+/* Stem: line from yarn to project card */
+.project::before {
+  content: "";
+  position: absolute;
+  left: -54px;   /* reaches toward yarn */
+  top: 28px;
+  width: 44px;
+  height: 3px;
+  background: var(--pink-deep);
+  border-radius: 999px;
+  opacity: 0.9;
+}
+
+/* Knot: small circle where stem meets yarn */
+.project::after {
+  content: "";
+  position: absolute;
+  left: -62px;
+  top: 22px;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--pink-accent);
+  border: 2px solid rgba(0,0,0,0.06);
+}
+
+/* Cat + yarn ball at bottom */
+.cat-zone {
+  position: absolute;
+  left: 2px;
+  bottom: 10px;
+  width: 280px;
+  height: 120px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.yarn-ball {
+  position: absolute;
+  left: 0;
+  bottom: 18px;
+  font-size: 2.7rem;
+  transition: transform 420ms ease;
+  filter: drop-shadow(0 4px 0 rgba(0,0,0,0.05));
+}
+
+.cat {
+  position: absolute;
+  left: 82px;
+  bottom: 0;
+  font-size: 4rem;
+  transform-origin: left bottom;
+  transition: transform 420ms ease;
+}
+
+.cat-alt, .cat-svg {
+  display: none;
+}
+
+.cat-alt {
+  position: absolute;
+  left: 82px;
+  bottom: 0;
+  font-size: 4rem;
+  transform-origin: left bottom;
+  transition: transform 420ms ease;
+}
+
+.cat-svg {
+  position: absolute;
+  left: 82px;
+  bottom: 0;
+  width: 120px;
+  height: 90px;
+  transform-origin: left bottom;
+  transition: transform 420ms ease;
+}
+
+/* Variants: choose which cat appears */
+.cat-zone.variant-svg .cat { display: none; }
+.cat-zone.variant-svg .cat-svg { display: block; }
+
+.cat-zone.variant-alt .cat { display: none; }
+.cat-zone.variant-alt .cat-alt { display: block; }
+
+/* Tug animation (cat + ball) */
+.cat-zone:hover .cat {
+  transform: translateX(-10px) rotate(-6deg);
+}
+
+.cat-zone:hover .cat-alt {
+  transform: translateX(-10px) rotate(-6deg);
+}
+
+.cat-zone:hover .cat-svg {
+  transform: translateX(-10px) rotate(-6deg);
+}
+
+.cat-zone:hover .yarn-ball {
+  transform: translateX(10px) translateY(-6px) rotate(12deg);
+}
+
+/* Yarn reacts when hovering the cat area (modern browsers) */
+.projects:has(.cat-zone:hover) .yarn-line {
+  transform: translateX(5px);
+}
+
+/* Fallback if :has() isn’t supported: at least shift yarn on timeline hover */
+@supports not selector(:has(*)) {
+  .projects:hover .yarn-line {
+    transform: translateX(5px);
+  }
+}
+
+.site-footer {
+  text-align: center;
+  padding: 1.8rem 1rem 2.5rem;
+  color: rgba(0,0,0,0.6);
+  font-size: 0.95rem;
+}
+
+/* Mobile tweaks */
+@media (max-width: 640px) {
+  .site-header h1 { font-size: 2.1rem; }
+  .card h2 { font-size: 1.5rem; }
+
+  .projects { padding-left: 3.6rem; }
+  .yarn-line { left: 20px; }
+
+  .project::before { left: -48px; width: 38px; }
+  .project::after { left: -56px; }
+
+  .cat { font-size: 3.4rem; left: 72px; }
+  .yarn-ball { font-size: 2.2rem; }
+
+  .cat-alt { font-size: 3.4rem; left: 72px; }
+  .cat-svg { left: 72px; width: 100px; height: 76px; }
+}
