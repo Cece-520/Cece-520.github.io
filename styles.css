@@ -1,10 +1,10 @@
 /* styles.css */
 :root {
   --pink-main: #f9c5c7;
-  --pink-soft: #ffddd8;
+  --pink-soft: #F8EAE1;
   --pink-accent: #ffb0b5;
   --pink-deep: #f49aa3;
-  --text-main: #333;
+  --text-main: #CC8B87;
   --white: #ffffff;
 }
 
@@ -23,7 +23,7 @@ body {
 }
 
 a {
-  color: #c8557a;
+  color: #cf7486;
   text-decoration: none;
   font-weight: 700;
 }
@@ -40,6 +40,7 @@ a:hover { text-decoration: underline; }
 .site-header h1 {
   margin: 0;
   font-size: 2.6rem;
+  color:  #cf7486;
 }
 
 .site-header p {
@@ -81,7 +82,7 @@ a:hover { text-decoration: underline; }
 
 .card h2 {
   margin-top: 0;
-  color: #c8557a;
+  color: #cf7486;
   font-size: 1.8rem;
 }
 
@@ -169,7 +170,7 @@ a:hover { text-decoration: underline; }
   position: absolute;
   left: 2px;
   bottom: 10px;
-  width: 280px;
+  width: 580px;
   height: 120px;
   cursor: pointer;
   z-index: 2;
@@ -178,7 +179,7 @@ a:hover { text-decoration: underline; }
 .yarn-ball {
   position: absolute;
   left: 0;
-  bottom: 18px;
+  bottom: 30px;
   font-size: 2.7rem;
   transition: transform 420ms ease;
   filter: drop-shadow(0 4px 0 rgba(0,0,0,0.05));
@@ -193,9 +194,8 @@ a:hover { text-decoration: underline; }
   transition: transform 420ms ease;
 }
 
-.cat-alt, .cat-svg {
-  display: none;
-}
+.cat { display: none; }
+.cat-alt { display: none; }
 
 .cat-alt {
   position: absolute;
@@ -208,12 +208,13 @@ a:hover { text-decoration: underline; }
 
 .cat-svg {
   position: absolute;
-  left: 82px;
+  left: 220px;
   bottom: 0;
-  width: 120px;
-  height: 90px;
+  width: 180px;
+  height: auto;
   transform-origin: left bottom;
   transition: transform 420ms ease;
+  display: block;
 }
 
 /* Variants: choose which cat appears */
@@ -234,6 +235,14 @@ a:hover { text-decoration: underline; }
 
 .cat-zone:hover .cat-svg {
   transform: translateX(-10px) rotate(-6deg);
+}
+
+/* Flipped variant */
+.cat-svg.is-flipped {
+  transform: scaleX(-1);
+}
+.cat-zone:hover .cat-svg.is-flipped {
+  transform: scaleX(-1) translateX(10px) rotate(6deg);
 }
 
 .cat-zone:hover .yarn-ball {
@@ -274,5 +283,6 @@ a:hover { text-decoration: underline; }
   .yarn-ball { font-size: 2.2rem; }
 
   .cat-alt { font-size: 3.4rem; left: 72px; }
-  .cat-svg { left: 72px; width: 100px; height: 76px; }
+  .cat-zone { width: 340px; }
+  .cat-svg { left: 170px; width: 140px; height: auto; }
 }
